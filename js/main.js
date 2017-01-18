@@ -1,18 +1,23 @@
-function espacio(campo,texto){
-    var mensaje =document.createElement(span)
-    var texto =document
+function alerta(espacio,letras){
+var span = document.createElement("span");                 
+span.appendChild(letras);
+
+var padre= espacio.parentNode;
+var resulado=padre.appendChild(span);
+return padre;
+
 }
-    
 
-
-
-
+//validacion de nombres
 function validacionNom(event){
     /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
-        var nombre = document.getElementById("name").value;
-
-
-        var nombreArray = nombre.split("");
+        var nombre = document.getElementById("name");
+        var texto=document.createTextNode("Debe ingresar su nombre");
+    
+    if(nombre.value==""){
+        alerta(nombre,texto);
+    }else{
+        var nombreArray = nombre.value.split("");
         var primeraLetra = nombreArray[0];
         var primeraMayuscula = primeraLetra.toUpperCase();
         var cortePalabra = false;
@@ -27,10 +32,11 @@ function validacionNom(event){
                 primeraMayuscula+=nombreArray[i];
             if(nombreArray[i] == " ")
                 cortePalabra = true;
-
         }
 
        document.getElementById("name").value = primeraMayuscula;
+        nombre.parentNode.removeChild(nombre.nextSibling);
+    }
 }
 
 
@@ -54,10 +60,15 @@ function validacionNomb(event){
 
 function validateApe(event){
     /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
-        var apellido = document.getElementById("lastname").value;
-
-
-        var apellidoArray = apellido.split("");
+        var apellido = document.getElementById("lastname");
+        var texto1=document.createTextNode("Ingrese su apellido");
+    if(apellido.value=="")
+    {
+        alerta(apellido,texto1);
+    }
+    else 
+    {
+        var apellidoArray = apellido.value.split("");
         var primeraLetra = apellidoArray[0];
         var primeraMayuscula = primeraLetra.toUpperCase();
         var cortePalabra = false;
@@ -72,10 +83,11 @@ function validateApe(event){
                 primeraMayuscula+=apellidoArray[i];
             if(apellidoArray[i] == " ")
                 cortePalabra = true;
-
         }
-
-       document.getElementById("lastname").value = primeraMayuscula;
+        
+        document.getElementById("lastname").value = primeraMayuscula;
+        apellido.parentNode.removeChild(apellido.nextSibling);
+    }
 }
 
 
@@ -135,10 +147,5 @@ function validateOption(event){
 
 function validateForm(){
     validateOption();
-    validacionNom();
-    validacionNomb();
-    validateApellido();
-    validacionEmail();
-    validacionPassword();
-    validateType();
 }
+
