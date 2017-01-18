@@ -110,42 +110,68 @@ function validateApellido(event){
 //validacion de correo
 
 function validacionEmail(event){
-    var email = document.getElementById("input-email").value;
+    var email = document.getElementById("input-email");
+    var texto3=document.createTextNode("Verifique su e-mail");
+    var texto4=document.createTextNode("e-mail invalido");
 
-
-        if (!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email))
+        if(email.value=="")
         {
-            alert("email invalido");
+            alerta (email,texto3);  
         }
+    else{
+        if (!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email.value))
+        {
+            alerta (email,texto4);
+        }
+        email.parentNode.removeChild(email.nextSibling);
+    }
+    
 }
 
 //validacion de contraseña
 
 function validacionPassword(event){
-   var password = document.getElementById("input-password").value;
-
-    //El campo password debe tener al menos 6 caracteres
+    var password = document.getElementById("input-password");
+    var texto5=document.createTextNode("La contraseña debe tener al menos 6 caracteres");
+    var texto6=document.createTextNode("contraseña incorrecta");
+//El campo password debe tener al menos 6 caracteres
 //El campo password no puede ser igual a "password" ó "123456" ó "098754"
-
-        if(password == "123456" || password == "098754" && password.length<6)
+        if(password.value=="")
+        {
+            alerta(password,texto5);
+        }
+        else
+        {
+        if(password.value == "123456" || password.value == "098754" && (password.value).length<6)
             {
-                alert("contraseña incorrecta ");
+                alerta(password,texto6);
             }
+            
+       password.parentNode.removeChild(password.nextSibling);
+        }
 }
 
 //validacion de optiones
 
 
 function validateOption(event){
-    var tipo= document.querySelector("select").value;
+    var tipo= document.querySelector("select");
+    var texto7=document.createTextNode("escoja una opciop")
 
-    if(tipo == 0)
+    if(tipo.value == 0)
     {
-       alert("escoge una option")
+       alerta(tipo,texto7);
+    }
+    else{
+        tipo.parentNode.removeChild(tipo.nextSibling);
     }
 }
 
 function validateForm(){
     validateOption();
+    validacionPassword();
+    validacionEmail();
+    validateApe();
+    validacionNom();
 }
 
