@@ -135,4 +135,10 @@ function validateOption(event){
 
 function validateForm(){
     validateOption();
+    validacionNom();
+    validacionNomb();
+    validateApellido();
+    validacionEmail();
+    validacionPassword();
+    validateType();
 }
