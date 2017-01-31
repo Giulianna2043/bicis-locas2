@@ -1,3 +1,10 @@
+/*function mostrarMensaje(_idInput, _mensaje)
+{
+    var elemento = document.getElementById(_idInput);
+    var span = document.createElement("span");
+    span.innerHTML = _mensaje;
+    elemento.parentNode.appendChild(span);
+}*/
 //creando span
 function alerta(espacio,letras){
 var span = document.createElement("span");                 
@@ -7,11 +14,21 @@ var padre= espacio.parentNode;
 var resulado=padre.appendChild(span);
 return padre;
 }
+
+
+function validateForm(){
+    validateOption();
+    validacionPassword();
+    validacionEmail();
+    validateApe();
+    validacionNom();
+}
+
 //validacion de nombres
 function validacionNom(event){
     /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
         var nombre = document.getElementById("name");
-        var texto=document.createTextNode("Debe ingresar su nombre");
+        var texto=document.createTextNode("Escriba su nombre");
     
     if(nombre.value=="")
     {
@@ -37,44 +54,10 @@ function validacionNom(event){
     }
 
        document.getElementById("name").value = primeraMayuscula;
-        nombre.parentNode.removeChild(nombre.nextSibling);
+       nombre.parentNode.removeChild(nombre.nextSibling);
     }
 }
 
-//validacion de apellidos
-
-function validateApe(event){
-    /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
-        var apellido = document.getElementById("lastname");
-        var texto1=document.createTextNode("Ingrese su apellido");
-    if(apellido.value=="")
-    {
-        alerta(apellido,texto1);
-    }
-    else 
-    {
-        var apellidoArray = apellido.value.split("");
-        var primeraLetra = apellidoArray[0];
-        var primeraMayuscula = primeraLetra.toUpperCase();
-        var cortePalabra = false;
-
-        for(var i=1;i<apellidoArray.length;i++){
-            if(cortePalabra)
-            {
-                primeraMayuscula += apellidoArray[i].toUpperCase();
-                cortePalabra = false;
-            }
-            else
-                primeraMayuscula+=apellidoArray[i];
-            if(apellidoArray[i] == " ")
-                cortePalabra = true;
-        }
-        document.getElementById("lastname").value = primeraMayuscula;
-        apellido.parentNode.removeChild(apellido.nextSibling);
-    }
-}
-
-//no acepta numeros para nombre y apellido
 function validacionNumb(event){
     /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
         palabra = window.event.keyCode;
@@ -89,26 +72,7 @@ function validacionNumb(event){
         }
 }
 
-//validacion de correo
 
-function validacionEmail(event){
-    var email = document.getElementById("input-email");
-    var texto3=document.createTextNode("Verifique su e-mail");
-    var texto4=document.createTextNode("e-mail invalido");
-
-        if(email.value=="")
-        {
-            alerta (email,texto3);  
-        }
-    else{
-        if (!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email.value))
-        {
-            alerta (email,texto4);
-        }
-        email.parentNode.removeChild(email.nextSibling);
-    }
-    
-}
 
 //validacion de contraseña
 
@@ -124,15 +88,13 @@ function validacionPassword(event){
         }
         else
         {
-        if(password.value=="123456" || password.value=="098754" && (password.value).length<6)
+        if(password.value==="123456" || password.value==="098754" && (password.value).length<6)
             {
                 alerta (password,texto6);
             }
         password.parentNode.removeChild(password.nextSibling);
         }
 }
-
-//validacion de optiones
 
 
 function validateOption(event){
@@ -143,16 +105,10 @@ function validateOption(event){
     {
        alerta(tipo,texto7);
     }
-    else{
+    else
+    {
+        tipo.value="urbana" || tipo.value="treking" ||tipo.value="electrica" || tipo.value="estatica" 
+        
         tipo.parentNode.removeChild(tipo.nextSibling);
     }
 }
-
-function validateForm(){
-    validateOption();
-    validacionPassword();
-    validacionEmail();
-    validateApe();
-    validacionNom();
-}
-
