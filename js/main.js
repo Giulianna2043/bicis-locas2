@@ -101,7 +101,7 @@ function validacionEmail(event){
             alerta (email,texto3);  
         }
     else{
-        if (!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email.value))
+        if (/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email.value))
         {
             alerta (email,texto4);
         }
