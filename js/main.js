@@ -83,7 +83,7 @@ function validacionNombre(inputID){
 function validacionEmail(event){
     var email = document.getElementById("input-email");
     var texto5="Verifique su e-mail";
-console.log("hshshsh");
+
     if (/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email.value))
         {
             removeMessage("input-email");
