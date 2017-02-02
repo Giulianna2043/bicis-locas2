@@ -7,7 +7,7 @@ function removeMessage(_inputID){
 		elemento.parentNode.removeChild(elemento.nextSibling);
 	}
 }
-//crear mensaje
+//crear mensaje y span
 function createMessage(_inputID, _message){
 	var elemento = document.getElementById(_inputID);
 
@@ -39,7 +39,7 @@ function primeraMayus(nombre){
     var cortePalabra = false;
 
     for(var i=1;i<nombreArray.length;i++){
-            
+
         if(cortePalabra)
         {
             primeraMayuscula += nombreArray[i].toUpperCase();
@@ -55,65 +55,44 @@ function primeraMayus(nombre){
     return primeraMayuscula;
 }
 //validacion de nombres
-function validacionNombre(event){
+function validacionNombre(inputID){
     /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
-    var nombre = document.getElementById("name");
+    var nombre = document.getElementById(inputID);
+
     var texto1="Debe ingresar su nombre";
     var texto2="No se acepta numeros";
-    
+
     if(nombre.value!="")
     {
         nombre.value=primeraMayus(nombre.value);
         if(/([0-9])/g.test(nombre.value))
         {
-           createMessage("name",texto2); 
+           createMessage(inputID,texto2);
         }
         else{
-            removeMessage("name");
+            removeMessage(inputID);
         }
     }
     else
     {
-        createMessage("name",texto1);  
+        createMessage(inputID,texto1);
     }
 }
 //validacion de apellidos
-function validacionApellido(event){
-    /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
-    var apellido = document.getElementById("lastname");
-    var texto3="Ingrese su apellido";
-    var texto4="No se acepta numeros";   
-    ;
-    if(apellido.value!="")
-    {
-        apellido.value=primeraMayus(apellido.value);
-        if(/([0-9])/g.test(apellido.value))
-        {
-           createMessage("lastname",texto4); 
-        }
-        else{
-            removeMessage("lastname");
-        }
-    }
-    else 
-    {
-         createMessage("lastname",texto3);   
-    }
-}
 //validacion de correo
 function validacionEmail(event){
     var email = document.getElementById("input-email");
     var texto5="Verifique su e-mail";
-        
+console.log("hshshsh");
     if (/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email.value))
         {
             removeMessage("input-email");
         }
-        
+
      else{
          if (email.value.length>=0)
           {
-            createMessage("input-email",texto5); 
+            createMessage("input-email",texto5);
           }
      }
 }
@@ -121,35 +100,31 @@ function validacionEmail(event){
 function validacionPassword(event){
     var password = document.getElementById("input-password");
     var texto6="La contraseña debe tener al menos 6 caracteres";
-    var texto8="Contraseña incorrecta";
-    //var texto6=document.createTextNode("contraseña incorrecta");
  //El campo password debe tener al menos 6 caracteres
   //El campo password no puede ser igual a "password" ó "123456" ó "098754"
-    
+
         if(password.value === "123456" || password.value == "098754"|| password.value.length <=6)
             {
-                createMessage("input-password",texto6);    
+                createMessage("input-password",texto6);
             }
         else
         {
-            removeMessage("input-password");  
+            removeMessage("input-password");
         }
-    
-    
-    
+
   }
 //validacion de optiones
 function validateOption(event){
     var tipo= document.getElementById("select");
     var texto7="Debes seleccionar al menos un tipo de bici"
-  
+
     if(tipo.value == 0)
     {
         createMessage("select",texto7)
     }
     else
     {
-        removeMessage("select")    
+        removeMessage("select")
     }
   }
 //validacion totall
@@ -157,7 +132,7 @@ function validateForm(){
     validateOption();
     validacionPassword();
     validacionEmail();
-    validacionApellido();
-    validacionNombre();
+    //validacionApellido();
+    validacionNombre("name");
+		validacionNombre("lastname");
   }
-
