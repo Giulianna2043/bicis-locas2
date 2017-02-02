@@ -132,7 +132,6 @@ function validateForm(){
     validateOption();
     validacionPassword();
     validacionEmail();
-    //validacionApellido();
     validacionNombre("name");
 		validacionNombre("lastname");
   }
