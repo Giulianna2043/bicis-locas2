@@ -59,7 +59,7 @@ function validacionNombre(inputID){
     /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
     var nombre = document.getElementById(inputID);
 
-    var texto1="Debe ingresar su nombre";
+    var texto1="Campo requerido";
     var texto2="No se acepta numeros";
 
     if(nombre.value!="")
